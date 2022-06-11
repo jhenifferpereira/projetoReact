@@ -1,21 +1,81 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
+// #2 Integration of Firebase Cloud Firestore Database
+// https://aboutreact.com/react-native-firebase-cloud-firestore-db
+ 
+import 'react-native-gesture-handler';
+ 
+import * as React from 'react';
+ 
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+ 
+import HomeScreen from './pages/HomeScreen';
+import RegisterBook from './pages/RegisterBook';
+import UpdateBook from './pages/UpdateBook';
+import ViewAllBook from './pages/ViewAllBook';
+import ViewBook from './pages/ViewBook';
+import DeleteBook from './pages/DeleteBook';
+import RealTimeAddUpdateBook from './pages/RealTimeAddUpdateBook';
+import AddOrderSummary from './pages/AddOrderSummary';
+ 
+const Stack = createStackNavigator();
+ 
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="HomeScreen"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#03A89E', //Set Header color
+          },
+          headerTintColor: '#fff', //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}>
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{title: 'Home'}}
+        />
+        <Stack.Screen
+          name="RegisterBook"
+          component={RegisterBook}
+          options={{title: 'Register'}}
+        />
+        <Stack.Screen
+          name="UpdateBook"
+          component={UpdateBook}
+          options={{title: 'Update'}}
+        />
+        <Stack.Screen
+          name="ViewAllBook"
+          component={ViewAllBook}
+          options={{title: 'View All'}}
+        />
+        <Stack.Screen
+          name="ViewBook"
+          component={ViewBook}
+          options={{title: 'View'}}
+        />
+        <Stack.Screen
+          name="DeleteBook"
+          component={DeleteBook}
+          options={{title: 'Delete'}}
+        />
+        <Stack.Screen
+          name="RealTimeAddUpdateBook"
+          component={RealTimeAddUpdateBook}
+          options={{title: 'Real Time Updates'}}
+        />
+        <Stack.Screen
+          name="AddOrderSummary"
+          component={AddOrderSummary}
+          options={{title: 'Add Order Summary'}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};
+ 
+export default App;
